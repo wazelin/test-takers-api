@@ -1,0 +1,16 @@
+language: php
+php:
+  - 7.4
+
+services:
+  - docker
+
+before_script: composer install
+
+script: >-
+  docker-compose
+  -f docker-compose-test.yml
+  run tester
+  cli/vendor/bin/phpunit
+  --configuration /cli/phpunit.xml.dist
+  --cache-result-file=/tmp/.phpunit.result.cache
