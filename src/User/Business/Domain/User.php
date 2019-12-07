@@ -90,4 +90,10 @@ class User
     {
         return $this->address;
     }
+
+    public function hasSimilarName(string $value): bool
+    {
+        return mb_strpos($value, $this->firstName) !== false
+            || mb_strpos($value, $this->lastName) !== false;
+    }
 }

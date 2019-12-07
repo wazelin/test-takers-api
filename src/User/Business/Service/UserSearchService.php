@@ -29,9 +29,13 @@ class UserSearchService
      */
     public function findOneOrFail(UserSearchInput $input): User
     {
-        return $this->repository->findOneOrFail(
-            $input->getSearchRequest()
-        );
+        $users = $this->findAll($input);
+
+        if (!$users) {
+            throw NotFoundException::create('user');
+        }
+
+        return reset($users);
     }
 
     /**
@@ -41,7 +45,7 @@ class UserSearchService
      */
     public function findAll(UserSearchInput $input): array
     {
-        return $this->repository->findAll(
+        return $this->repository->find(
             $input->getSearchRequest()
         );
     }

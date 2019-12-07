@@ -16,6 +16,6 @@ class UsersJsonView implements JsonSerializable
 
     public function jsonSerialize()
     {
-        return array_map(fn(User $user) => new ShortUserJsonView($user), $this->users);
+        return array_map(static fn(User $user): ShortUserJsonView => new ShortUserJsonView($user), $this->users);
     }
 }

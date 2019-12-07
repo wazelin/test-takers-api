@@ -22,6 +22,6 @@ class JsonResponder
             );
         }
 
-        return $response->withStatus($statusCode);
+        return $response->withStatus($statusCode)->withAddedHeader('Content-type', 'application/json');
     }
 }
