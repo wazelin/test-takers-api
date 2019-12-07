@@ -17,6 +17,10 @@ stop:
 .PHONY: ci
 ci: start test stop
 
+.PHONY: prepare-test
+prepare-test:
+	$(DOCKER_COMPOSE_TEST) run --rm tester ./vendor/bin/codecept build
+
 .PHONY: test
-test:
-	$(DOCKER_COMPOSE_TEST) run --rm tester ./vendor/bin/phpunit --configuration ./phpunit.xml.dist --cache-result-file=/tmp/.phpunit.result.cache
+test: prepare-test
+	$(DOCKER_COMPOSE_TEST) run --rm tester ./vendor/bin/codecept run

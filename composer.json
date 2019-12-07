@@ -13,11 +13,13 @@
     }
   },
   "require-dev": {
+    "codeception/codeception": "^3.1",
+    "codeception/phpunit-wrapper": "^8.1",
     "phpunit/phpunit": "^8.5"
   },
   "autoload-dev": {
     "psr-4": {
-      "Wazelin\\TestTakersApi\\Test\\": "test/"
+      "Wazelin\\TestTakersApi\\Test\\": "test/suite"
     }
   }
 }

@@ -1,0 +1,16 @@
+namespace: Wazelin\TestTakersApi\Test
+actor: Tester
+paths:
+  data: test/data
+  tests: test/suite
+  output: test/output
+  support: test/support
+settings:
+  colors: true
+coverage:
+  enabled: true
+  remote: false
+  work_dir: /var/www/test-takers-api
+  show_uncovered: true
+  include:
+    - src/*
