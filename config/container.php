@@ -6,5 +6,6 @@ use Wazelin\TestTakersApi\User\UserDefinitions;
 $containerBuilder = new ContainerBuilder();
 
 return $containerBuilder
+    ->addDefinitions(__DIR__ . '/config.php')
     ->addDefinitions(UserDefinitions::get())
     ->build();

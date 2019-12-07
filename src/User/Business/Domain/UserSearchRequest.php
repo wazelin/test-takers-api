@@ -4,10 +4,10 @@ namespace Wazelin\TestTakersApi\User\Business\Domain;
 
 class UserSearchRequest
 {
-    private ?int $id;
-    private ?string $name;
-    private ?int $limit;
-    private ?int $offset;
+    private ?int $id = null;
+    private ?string $name = null;
+    private int $limit = 20;
+    private int $offset = 0;
 
     public function setId(int $id): self
     {
@@ -49,14 +49,9 @@ class UserSearchRequest
         return $this;
     }
 
-    public function getLimit(): ?int
+    public function getLimit(): int
     {
         return $this->limit;
-    }
-
-    public function hasLimit(): bool
-    {
-        return null !== $this->limit;
     }
 
     public function setOffset(int $offset): self
@@ -65,13 +60,8 @@ class UserSearchRequest
         return $this;
     }
 
-    public function getOffset(): ?int
+    public function getOffset(): int
     {
         return $this->offset;
-    }
-
-    public function hasOffset(): bool
-    {
-        return null !== $this->offset;
     }
 }
