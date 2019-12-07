@@ -7,7 +7,7 @@ use Throwable;
 
 class InvalidRequestException extends InvalidArgumentException implements HttpExceptionInterface
 {
-    public function __construct($message = '', $code = 403, Throwable $previous = null)
+    public function __construct($message = '', $code = 400, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

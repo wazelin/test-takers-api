@@ -16,4 +16,12 @@ class NoopUserSearchRepository implements UserRepositoryInterface
     {
         throw NotFoundException::create('user');
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function findAll(UserSearchRequest $searchRequest): array
+    {
+        return [];
+    }
 }
