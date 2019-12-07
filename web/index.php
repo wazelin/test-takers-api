@@ -1,13 +1,16 @@
 <?php declare(strict_types=1);
 
 use DI\Bridge\Slim\Bridge;
+use DI\Container;
 
-require __DIR__ . '/../vendor/autoload.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
 
-$app = Bridge::create();
+/** @var Container $container */
+$container = require dirname(__DIR__) . '/config/container.php';
 
-$app->addErrorMiddleware(true, true, true);
+$app = Bridge::create($container);
 
+require dirname(__DIR__) . '/config/middleware.php';
 require dirname(__DIR__) . '/config/routes.php';
 
 $app->run();
