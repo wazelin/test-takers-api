@@ -7,7 +7,7 @@ use Wazelin\TestTakersApi\User\Business\Service\UserSearchService;
 use Wazelin\TestTakersApi\User\Presentation\Web\RequestHandler\UserSearchRequestHandler;
 use Wazelin\TestTakersApi\User\Presentation\Web\Responder\UserResponder;
 
-class GetUserAction
+class SearchUserAction
 {
     private UserSearchRequestHandler $requestHandler;
     private UserSearchService $service;

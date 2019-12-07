@@ -33,4 +33,16 @@ class UserSearchService
             $input->getSearchRequest()
         );
     }
+
+    /**
+     * @param UserSearchInput $input
+     *
+     * @return User[]
+     */
+    public function findAll(UserSearchInput $input): array
+    {
+        return $this->repository->findAll(
+            $input->getSearchRequest()
+        );
+    }
 }
