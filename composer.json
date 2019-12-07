@@ -19,7 +19,9 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Wazelin\\TestTakersApi\\Test\\": "test/suite"
+      "Wazelin\\TestTakersApi\\Test\\Unit\\": "test/suite/unit",
+      "Wazelin\\TestTakersApi\\Test\\Api\\": "test/suite/api",
+      "Wazelin\\TestTakersApi\\Test\\": "test/support"
     }
   }
 }
