@@ -1,0 +1,13 @@
+actor: ApiTester
+modules:
+  enabled:
+    - REST:
+        url: http://nginx
+        depends: PhpBrowser
+        part: Json
+  config:
+    PhpBrowser:
+      url: http://nginx
+      headers:
+        Content-Type: 'application/json'
+      timeout: 5

@@ -23,30 +23,37 @@ class StaticUserSearchRepository implements UserRepositoryInterface
     public function find(UserSearchRequest $searchRequest): array
     {
         if ($searchRequest->hasId()) {
-            return $searchRequest->getId() < 0 ? [] : $this->sliceUsers(1, $searchRequest->getId());
+            return $searchRequest->getId() < 0 ? [] : $this->sliceUsers($searchRequest->getId(), 1);
         }
-
-        $usersSlice = $this->sliceUsers($searchRequest->getLimit(), $searchRequest->getOffset());
 
         if (!$searchRequest->hasName()) {
-            return $usersSlice;
+            return $this->sliceUsers($searchRequest->getOffset(), $searchRequest->getLimit());
         }
 
-        return array_filter(
-            $usersSlice,
-            static function (User $user) use ($searchRequest): bool {
-                return $user->hasSimilarName($searchRequest->getName());
+        $result = [];
+
+        foreach ($this->sliceUsers($searchRequest->getOffset()) as $user) {
+            if ($user->hasSimilarName($searchRequest->getName()))
+            {
+                $result[] = $user;
             }
-        );
+
+            if (count($result) === $searchRequest->getLimit())
+            {
+                break;
+            }
+        }
+
+        return $result;
     }
 
     /**
-     * @param int $limit
      * @param int $offset
+     * @param int|null $limit
      *
      * @return User[]
      */
-    private function sliceUsers(int $limit, int $offset): array
+    private function sliceUsers(int $offset, int $limit = null): array
     {
         return $this->factory->create(array_slice($this->repository->findAll(), $offset, $limit, true));
     }
