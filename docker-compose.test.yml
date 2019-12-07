@@ -4,7 +4,7 @@ services:
   tester:
     build: ./docker/php-cli
     networks:
-      - tetst-takes-api
+      - test-takes-api
     volumes:
       - ./:/cli
     working_dir: /cli

@@ -1,7 +1,6 @@
-.DEFAULT_GOAL := test
+.DEFAULT_GOAL := ci
 
-PHP_DOCKER_CONTAINER=php
-DOCKER_COMPOSE_TEST=docker-compose -f docker-compose.test.yml -f docker-compose.yml
+DOCKER_COMPOSE_TEST=docker-compose -f docker-compose.yml -f docker-compose.test.yml
 
 .PHONY: install
 install:
@@ -9,15 +8,15 @@ install:
 
 .PHONY: start
 start: stop install
-	docker-compose up -d
+	docker-compose up -d --build
 
 .PHONY: stop
 stop:
 	$(DOCKER_COMPOSE_TEST) down --remove-orphans
 
-.PHONY: test
-test: start phpunit stop
+.PHONY: ci
+ci: start test stop
 
-.PHONY: phpunit
-phpunit:
+.PHONY: test
+test:
 	$(DOCKER_COMPOSE_TEST) run --rm tester ./vendor/bin/phpunit --configuration ./phpunit.xml.dist --cache-result-file=/tmp/.phpunit.result.cache
