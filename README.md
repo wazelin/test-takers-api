@@ -1,12 +1,12 @@
 # OAT Homework interpretation
-![Deploy Status](https://api.travis-ci.com/wazelin/tetst-takers-api.svg?branch=master)
+[![Deploy Status](https://travis-ci.com/wazelin/test-takers-api.svg?branch=master)](https://travis-ci.com/wazelin/test-takers-api)
 ## API Specifications
 https://hr.oat.taocloud.org/api/
+## Running a development environment
+```shell script
+$ make start
+```
 ## Testing
 ```shell script
-$ docker-compose  \
-  -f docker-compose-test.yml \
-  run tester \
-  cli/vendor/bin/phpunit \
-  --configuration /cli/phpunit.xml.dist
+$ make
 ```
